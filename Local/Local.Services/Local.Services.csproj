@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FDB234D1-7665-4ABC-941C-E043A5F124A3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Local.Services</RootNamespace>
+    <AssemblyName>Local.Services</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\Table.cs" />
+    <Compile Include="Admin\Waiters.cs" />
+    <Compile Include="Admin\Zone.cs" />
+    <Compile Include="Database\Database.cs" />
+    <Compile Include="Kitchen\Kitchen.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="Tables\Articles.cs" />
+    <Compile Include="Waiters\Waiters.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Local.DataContract\Local.DataContract.csproj">
+      <Project>{4FF8647F-4E8F-4AA9-94D5-D1AC0DAFB24B}</Project>
+      <Name>Local.DataContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Local.Interfaces\Local.Interfaces.csproj">
+      <Project>{10D7394E-2C83-4492-BA4E-42E01C94C22B}</Project>
+      <Name>Local.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Local.Lirary\Local.Library.csproj">
+      <Project>{84CB3A46-BF86-4676-9A9B-B5F793CEA31D}</Project>
+      <Name>Local.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Local.Server\Local.Server.csproj">
+      <Project>{BF5C9A0E-E2FE-4F35-A689-2E3CB751274F}</Project>
+      <Name>Local.Server</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

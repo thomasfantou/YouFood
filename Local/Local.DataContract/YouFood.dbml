@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="YouFoodLocal" Class="YouFoodDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=YouFoodLocal;Integrated Security=True" SettingsObjectName="Local.DataContract.Properties.Settings" SettingsPropertyName="YouFoodLocalConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Article_Type" Member="Article_Type">
+    <Type Name="Article_Type">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Article_Type_Article_Type" Member="Article_Type2" ThisKey="Id" OtherKey="Id" Type="Article_Type" Cardinality="One" />
+      <Association Name="Article_Type_Article" Member="Article" ThisKey="Id" OtherKey="Id_Article_Type" Type="Article" />
+      <Association Name="Article_Type_Article_Type" Member="Article_Type1" ThisKey="Id" OtherKey="Id" Type="Article_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment" Member="Payment">
+    <Type Name="Payment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Payment_Orders" Member="Orders" ThisKey="Id" OtherKey="Id_Payment" Type="Orders" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ref_Order_Article" Member="Ref_Order_Article">
+    <Type Name="Ref_Order_Article">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_Article" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Order" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Article_Ref_Order_Article" Member="Article" ThisKey="Id_Article" OtherKey="Id" Type="Article" IsForeignKey="true" />
+      <Association Name="Orders_Ref_Order_Article" Member="Orders" ThisKey="Id_Order" OtherKey="Id" Type="Orders" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Restaurant" Member="Restaurant">
+    <Type Name="Restaurant">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Status" Member="Status">
+    <Type Name="Status">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Status_Orders" Member="Orders" ThisKey="Id" OtherKey="Id_Status" Type="Orders" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Database_Changes" Member="Database_Changes">
+    <Type Name="Database_Changes">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Article_changed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Database_Changes_Database_Changes" Member="Database_Changes2" ThisKey="Id" OtherKey="Id" Type="Database_Changes" Cardinality="One" />
+      <Association Name="Database_Changes_Database_Changes" Member="Database_Changes1" ThisKey="Id" OtherKey="Id" Type="Database_Changes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Article" Member="Article">
+    <Type Name="Article">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Article_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Article_Ref_Order_Article" Member="Ref_Order_Article" ThisKey="Id" OtherKey="Id_Article" Type="Ref_Order_Article" />
+      <Association Name="Article_Type_Article" Member="Article_Type" ThisKey="Id_Article_Type" OtherKey="Id" Type="Article_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Table]" Member="Table">
+    <Type Name="Table">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Id_Zone" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Table_Orders" Member="Orders" ThisKey="Id" OtherKey="Id_Table" Type="Orders" />
+      <Association Name="Zone_Table" Member="Zone" ThisKey="Id_Zone" OtherKey="Id" Type="Zone" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Waiters" Member="Waiters">
+    <Type Name="Waiters">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Waiters_Zone" Member="Zone" ThisKey="Id" OtherKey="Id_Waiters" Type="Zone" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Zone" Member="Zone">
+    <Type Name="Zone">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Id_Waiters" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Zone_Table" Member="Table" ThisKey="Id" OtherKey="Id_Zone" Type="Table" />
+      <Association Name="Waiters_Zone" Member="Waiters" ThisKey="Id_Waiters" OtherKey="Id" Type="Waiters" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Orders">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Payment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id_Table" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Orders_Ref_Order_Article" Member="Ref_Order_Article" ThisKey="Id" OtherKey="Id_Order" Type="Ref_Order_Article" />
+      <Association Name="Payment_Orders" Member="Payment" ThisKey="Id_Payment" OtherKey="Id" Type="Payment" IsForeignKey="true" />
+      <Association Name="Status_Orders" Member="Status" ThisKey="Id_Status" OtherKey="Id" Type="Status" IsForeignKey="true" />
+      <Association Name="Table_Orders" Member="Table" ThisKey="Id_Table" OtherKey="Id" Type="Table" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwGetOrders" Member="vwGetOrders">
+    <Type Name="vwGetOrders">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Payment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id_Table" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PaymentAmount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TableName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WaiterLastName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WaiterFirstName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Id_Waiter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ArticleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ArticleDescription" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ArticleTypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwGetArticles" Member="vwGetArticles">
+    <Type Name="vwGetArticles">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

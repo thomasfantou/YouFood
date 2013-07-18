@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="Local.Layout" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link type="text/css" href="~/Scripts/jquery-ui/css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <asp:ScriptManager ID="RadScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="~/Scripts/jquery-1.4.1.min.js" />
+                <asp:ScriptReference Path="~/Scripts/jquery-ui/js/jquery-ui-1.8.21.custom.min.js" />
+                <asp:ScriptReference Path="~/Scripts/scripts.js" />
+            </Scripts>
+        </asp:ScriptManager>
+
+
+
+        <asp:Table runat="server">
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Button runat="server" ID="btnKitchen" Text="Kitchen" OnClick="btnKitchen_Click"/>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Button runat="server" ID="btnWaiters" Text="Waiters"  OnClick="btnWaiters_Click"/>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Button runat="server" ID="btnAdmin" Text="Admin"  OnClick="btnAdmin_Click"/>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
